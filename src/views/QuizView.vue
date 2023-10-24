@@ -45,10 +45,10 @@ watch(
       </div>
     </div>
 
-    <button v-if="questionId < quiz.length - 1 && questionId > 0" @click="onPrevQuestion">Prev question</button>
-
+    <button v-if="questionId <= quiz.length - 1 && questionId > 0" @click="onPrevQuestion">Prev question</button>
     <button v-if="questionId < quiz.length - 1" @click="onNextQuestion">Next question</button>
-    <button v-if="questionId === quiz.length - 1" @click="onRevealResult">Reveal result</button>
+    <br>
+    <button v-if="questionId == quiz.length - 1" @click="onRevealResult">Reveal result</button>
   </main>
   <div v-else>Question not found</div>
 </template>
