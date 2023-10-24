@@ -9,12 +9,28 @@ import {quizState} from "@/state/quizState";
 const route = useRoute()
 const questionId = ref<number>(Number(route.query.questionId))
 const question = ref<Question>(quizState.questions.value[questionId.value])
-const checkedAnswers = ref<Array<number>>([]);
+const answers = ref<Array<number>>(quizState.answers.value[questionId.value])
+const checkedAnswers = ref<Array<number>>(answers.value ? answers.value : []);
 
-const goToQuestion = (goToQuestionId: number) => {
+const onCheckboxChange = () => {
   quizState.setAnswer(questionId.value, checkedAnswers.value)
-  questionId.value = goToQuestionId
-  router.push('/quiz?questionId=' + goToQuestionId)
+  const calculateResult = (givenAnswers: Array[number], correctAnswers: Array[number]): number => (
+      givenAnswers.reduce((count, value) => {
+        if (correctAnswers.includes(value)) {
+          return count + 1;
+        }
+        return count;
+      }, 0)
+  )
+  quizState.setResult(questionId.value, calculateResult(checkedAnswers.value, question.value.correctAnswers))
+}
+
+const onPrevQuestion = () => {
+  router.push(`/quiz?questionId=${questionId.value - 1}`)
+}
+
+const onNextQuestion = () => {
+  router.push(`/quiz?questionId=${questionId.value + 1}`)
 }
 
 const onRevealResult = () => {
@@ -25,8 +41,9 @@ watch(
     () => route.query.questionId,
     (id) => {
       questionId.value = Number(id);
-      question.value = quiz[Number(id)];
-      checkedAnswers.value = []
+      question.value = quizState.questions.value[Number(id)];
+      answers.value = quizState.answers.value[id]
+      checkedAnswers.value = answers.value ? answers.value : []
     },
 );
 </script>
@@ -36,15 +53,21 @@ watch(
     <h2>{{ questionId }} - {{ question.question }}</h2>
     <div class="options">
       <div v-for="(option, index) in question.options">
-        <input type="checkbox" :id="option" :name="option" :value="index" v-model="checkedAnswers">
+        <input
+            type="checkbox"
+            :id="option"
+            :name="option"
+            :value="index"
+            v-model="checkedAnswers"
+            @change="onCheckboxChange"
+        >
         <label :for="option">{{ option }}</label>
       </div>
     </div>
 
-    checked: {{ checkedAnswers }}
-
-    <button v-if="questionId <= quiz.length - 1 && questionId > 0" @click="goToQuestion(questionId-1)">Prev question</button>
-    <button v-if="questionId < quiz.length - 1" @click="goToQuestion(questionId+1)">Next question</button>
+    <button v-if="questionId <= quiz.length - 1 && questionId > 0" @click="onPrevQuestion">Prev question
+    </button>
+    <button v-if="questionId < quiz.length - 1" @click="onNextQuestion">Next question</button>
     <br>
     <button v-if="questionId == quiz.length - 1" @click="onRevealResult">Reveal result</button>
   </main>

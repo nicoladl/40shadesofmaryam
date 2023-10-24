@@ -1,5 +1,5 @@
 export interface Question {
     question: string;
-    options: string[];
-    correctAnswerIndex: number;
+    options: Array<string>;
+    correctAnswers: Array<number>;
 }

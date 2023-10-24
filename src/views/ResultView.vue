@@ -1,22 +1,15 @@
 <script setup lang="ts">
-  import {quizState} from "@/state/quizState";
+import {quizState} from "@/state/quizState";
+import {ref} from "vue";
 
-  console.log(quizState.answers.value)
+const results = ref<Array<number[]>>(quizState.results.value)
+const totalPoints = results.value.reduce((points, result) => {
+  return points + result
+}, 0)
 </script>
 
 <template>
   <div class="result">
-    <h1>This is the result page</h1>
-    {{  }}
+    <h1>points: {{ totalPoints }}</h1>
   </div>
 </template>
-
-<style>
-@media (min-width: 1024px) {
-  .result {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
-}
-</style>
