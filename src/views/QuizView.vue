@@ -6,20 +6,12 @@ import {useRoute} from "vue-router";
 import router from "@/router";
 
 const route = useRoute()
-const questionId = ref<number>(route.query.questionId)
-console.log(questionId.value)
+const questionId = ref<number>(Number(route.query.questionId))
 const question = ref<Question>(quiz[questionId.value])
 
-const onNextQuestion = () => {
-  const nextQuestionId: number = Number(questionId.value) + 1
-  questionId.value = nextQuestionId
-  router.push('/quiz?questionId=' + nextQuestionId)
-}
-
-const onPrevQuestion = () => {
-  const nextQuestionId: number = Number(questionId.value) - 1
-  questionId.value = nextQuestionId
-  router.push('/quiz?questionId=' + nextQuestionId)
+const goToQuestion = (goToQuestionId: number) => {
+  questionId.value = goToQuestionId
+  router.push('/quiz?questionId=' + goToQuestionId)
 }
 
 const onRevealResult = () => {
@@ -29,15 +21,15 @@ const onRevealResult = () => {
 watch(
     () => route.query.questionId,
     (id) => {
-      questionId.value = id;
-      question.value = quiz[id];
+      questionId.value = Number(id);
+      question.value = quiz[Number(id)];
     },
 );
 </script>
 
 <template>
   <main v-if="questionId < quiz.length && questionId >= 0">
-    <h2>{{ question.question }}</h2>
+    <h2>{{ questionId }} - {{ question.question }}</h2>
     <div class="options">
       <div v-for="option in question.options">
         <input type="checkbox" :id="option" :name="option" :value="option">
@@ -45,8 +37,8 @@ watch(
       </div>
     </div>
 
-    <button v-if="questionId <= quiz.length - 1 && questionId > 0" @click="onPrevQuestion">Prev question</button>
-    <button v-if="questionId < quiz.length - 1" @click="onNextQuestion">Next question</button>
+    <button v-if="questionId <= quiz.length - 1 && questionId > 0" @click="goToQuestion(questionId-1)">Prev question</button>
+    <button v-if="questionId < quiz.length - 1" @click="goToQuestion(questionId+1)">Next question</button>
     <br>
     <button v-if="questionId == quiz.length - 1" @click="onRevealResult">Reveal result</button>
   </main>
