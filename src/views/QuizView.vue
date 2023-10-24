@@ -4,12 +4,15 @@ import type {Question} from "@/models/IQuestion";
 import {quiz} from "@/assets/quiz";
 import {useRoute} from "vue-router";
 import router from "@/router";
+import {quizState} from "@/state/quizState";
 
 const route = useRoute()
 const questionId = ref<number>(Number(route.query.questionId))
-const question = ref<Question>(quiz[questionId.value])
+const question = ref<Question>(quizState.questions.value[questionId.value])
+const checkedAnswers = ref<Array<number>>([]);
 
 const goToQuestion = (goToQuestionId: number) => {
+  quizState.setAnswer(questionId.value, checkedAnswers.value)
   questionId.value = goToQuestionId
   router.push('/quiz?questionId=' + goToQuestionId)
 }
@@ -23,6 +26,7 @@ watch(
     (id) => {
       questionId.value = Number(id);
       question.value = quiz[Number(id)];
+      checkedAnswers.value = []
     },
 );
 </script>
@@ -31,11 +35,13 @@ watch(
   <main v-if="questionId < quiz.length && questionId >= 0">
     <h2>{{ questionId }} - {{ question.question }}</h2>
     <div class="options">
-      <div v-for="option in question.options">
-        <input type="checkbox" :id="option" :name="option" :value="option">
+      <div v-for="(option, index) in question.options">
+        <input type="checkbox" :id="option" :name="option" :value="index" v-model="checkedAnswers">
         <label :for="option">{{ option }}</label>
       </div>
     </div>
+
+    checked: {{ checkedAnswers }}
 
     <button v-if="questionId <= quiz.length - 1 && questionId > 0" @click="goToQuestion(questionId-1)">Prev question</button>
     <button v-if="questionId < quiz.length - 1" @click="goToQuestion(questionId+1)">Next question</button>

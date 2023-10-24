@@ -1,22 +1,19 @@
 import {computed, reactive} from 'vue';
 import type {Question} from "@/models/IQuestion";
+import {quiz} from "@/assets/quiz";
 
-export const questionsInitialState: Array<Question> = [];
-export const answersInitialState: Array<number> = [];
+export const questionsInitialState: Array<Question> = quiz;
+const answersInitialState: Array<number[]> = Array(40).fill([]);
+
+const questions = computed(() => state.questions);
+const answers = computed(() => state.answers);
 
 const state = reactive({
     questions: questionsInitialState,
     answers: answersInitialState,
 });
-
-const question = computed((questionId: number) => state.questions[questionId]);
-const answer = computed((answerId: number) => state.answers[answerId]);
-
-const setAnswer = (questionId: string, answer: number) => {
-    state.answers = {
-        ...state.answers,
-        [questionId]: answer,
-    };
+const setAnswer = (questionId: number, checkedAnswers: Array<number>) => {
+    state.answers.splice(questionId, 1, checkedAnswers);
 };
 
 const flushAnswers = () => {
@@ -24,8 +21,8 @@ const flushAnswers = () => {
 };
 
 export const quizState = {
-    question,
-    answer,
+    questions,
+    answers,
     setAnswer,
     flushAnswers,
 };
