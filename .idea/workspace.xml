@@ -12,7 +12,8 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "node.js.selected.package.tslint": "(autodetect)"
+    "node.js.selected.package.tslint": "(autodetect)",
+    "ts.external.directory.path": "/Users/nicoladelazzari/40shadesofmaryam/node_modules/typescript/lib"
   }
 }]]></component>
   <component name="RunManager">
