@@ -11,6 +11,7 @@ const questionId = ref<number>(Number(route.query.questionId))
 const question = ref<Question>(quizState.questions.value[questionId.value])
 const answers = ref<Array<number>>(quizState.answers.value[questionId.value])
 const checkedAnswers = ref<Array<number>>(answers.value ? answers.value : []);
+const progressBarWidth = ref<number>((100 / quizState.questions.value.length) * (questionId.value + 1))
 
 const onCheckboxChange = () => {
   quizState.setAnswer(questionId.value, checkedAnswers.value)
@@ -40,15 +41,18 @@ const onRevealResult = () => {
 watch(
     () => route.query.questionId,
     (id) => {
+      // todo: check why I need this shit
       questionId.value = Number(id);
       question.value = quizState.questions.value[Number(id)];
       answers.value = quizState.answers.value[id]
       checkedAnswers.value = answers.value ? answers.value : []
+      progressBarWidth.value = (100 / quizState.questions.value.length) * (questionId.value + 1)
     },
 );
 </script>
 
 <template>
+  <div class="progress" :style="{ width: progressBarWidth + 'vw' }"/>
   <main v-if="questionId < quiz.length && questionId >= 0">
     <h2>{{ questionId }} - {{ question.question }}</h2>
     <div class="options">
@@ -65,9 +69,9 @@ watch(
       </div>
     </div>
 
-    <button v-if="questionId <= quiz.length - 1 && questionId > 0" @click="onPrevQuestion">Prev question
+    <button :disabled="questionId > quiz.length - 1 || questionId <= 0" @click="onPrevQuestion">Prev question
     </button>
-    <button v-if="questionId < quiz.length - 1" @click="onNextQuestion">Next question</button>
+    <button :disabled="questionId >= quiz.length - 1" @click="onNextQuestion">Next question</button>
     <br>
     <button v-if="questionId == quiz.length - 1" @click="onRevealResult">Reveal result</button>
   </main>
@@ -75,6 +79,14 @@ watch(
 </template>
 
 <style scoped lang="css">
+.progress {
+  height: 5px;
+  background-color: black;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 .options {
   display: flex;
   flex-direction: column;
