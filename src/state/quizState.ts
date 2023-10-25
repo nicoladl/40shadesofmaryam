@@ -2,8 +2,9 @@ import {computed, reactive} from 'vue';
 import type {Question} from "@/models/IQuestion";
 import {quiz} from "@/assets/quiz";
 
-const answersFromLocalStorage = JSON.parse(localStorage.getItem('@@maryam')).answers || []
-const resultsFromLocalStorage = JSON.parse(localStorage.getItem('@@maryam')).results || []
+const answersFromLocalStorage = JSON.parse(localStorage.getItem('@@maryam'))?.answers
+const resultsFromLocalStorage = JSON.parse(localStorage.getItem('@@maryam'))?.results
+
 export const questionsInitialState: Array<Question> = quiz;
 const answersInitialState: Array<number[]> = answersFromLocalStorage ? answersFromLocalStorage : Array(40).fill([]);
 const resultsInitialState: Array<number> = resultsFromLocalStorage ? resultsFromLocalStorage : Array(40).fill(0);
