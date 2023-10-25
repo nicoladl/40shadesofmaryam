@@ -38,6 +38,20 @@ const onRevealResult = () => {
   router.push('/result')
 }
 
+const selectCheckbox = (index: number) => {
+  const checkboxes = [...document.querySelectorAll('input')];
+  checkboxes[index].checked = !checkboxes[index].checked
+
+  checkedAnswers.value = checkboxes.reduce((result, check, checkIndex) => {
+    if (check.checked) {
+      result.push(checkIndex);
+    }
+    return result;
+  }, []);
+
+  onCheckboxChange()
+};
+
 watch(
     () => route.query.questionId,
     (id) => {
@@ -57,15 +71,15 @@ watch(
     <h2 class="centered question-title">{{ question.question }}</h2>
     <p class="centered progress-number">{{ questionId }} / {{ quiz.length - 1 }}</p>
     <div class="options">
-      <div v-for="(option, index) in question.options" class="options__item">
+      <div v-for="(option, index) in question.options" class="options__item" @click="selectCheckbox(index)">
         <input
             class="checkbox"
             type="checkbox"
             :id="option"
             :name="option"
             :value="index"
+            ref="checkbox"
             v-model="checkedAnswers"
-            @change="onCheckboxChange"
         >
         <label :for="option">{{ option }}</label>
       </div>
@@ -74,9 +88,14 @@ watch(
   <div v-else>Question not found</div>
 
   <div class="actions">
-    <button class="actions__item" :disabled="questionId > quiz.length - 1 || questionId <= 0" @click="onPrevQuestion">Prev question</button>
-    <button class="actions__item" :disabled="questionId >= quiz.length - 1" @click="onNextQuestion">Next question</button>
-    <button class="actions__item actions__item--centered" v-if="questionId == quiz.length - 1" @click="onRevealResult">Reveal result</button>
+    <button class="actions__item" :disabled="questionId > quiz.length - 1 || questionId <= 0" @click="onPrevQuestion">
+      Prev question
+    </button>
+    <button class="actions__item" :disabled="questionId >= quiz.length - 1" @click="onNextQuestion">Next question
+    </button>
+    <button class="actions__item actions__item--centered" v-if="questionId == quiz.length - 1" @click="onRevealResult">
+      Reveal result
+    </button>
   </div>
 </template>
 
@@ -98,7 +117,7 @@ watch(
   text-align: left;
   padding: 3.5vw;
   border-radius: 5px;
-  box-shadow: rgba(57,73,76,.35) 0 1px 6px 0;
+  box-shadow: rgba(57, 73, 76, .35) 0 1px 6px 0;
   //background: rgb(255 255 255/84%);
   background-color: grey;
 }
