@@ -54,10 +54,12 @@ watch(
 <template>
   <div class="progress" :style="{ width: progressBarWidth + 'vw' }"/>
   <main v-if="questionId < quiz.length && questionId >= 0">
-    <h2>{{ questionId }} - {{ question.question }}</h2>
+    <h2 class="centered question-title">{{ question.question }}</h2>
+    <p class="centered progress-number">{{ questionId }} / {{ quiz.length - 1 }}</p>
     <div class="options">
-      <div v-for="(option, index) in question.options">
+      <div v-for="(option, index) in question.options" class="options__item">
         <input
+            class="checkbox"
             type="checkbox"
             :id="option"
             :name="option"
@@ -68,28 +70,107 @@ watch(
         <label :for="option">{{ option }}</label>
       </div>
     </div>
-
-    <button :disabled="questionId > quiz.length - 1 || questionId <= 0" @click="onPrevQuestion">Prev question
-    </button>
-    <button :disabled="questionId >= quiz.length - 1" @click="onNextQuestion">Next question</button>
-    <br>
-    <button v-if="questionId == quiz.length - 1" @click="onRevealResult">Reveal result</button>
   </main>
   <div v-else>Question not found</div>
+
+  <div class="actions">
+    <button class="actions__item" :disabled="questionId > quiz.length - 1 || questionId <= 0" @click="onPrevQuestion">Prev question</button>
+    <button class="actions__item" :disabled="questionId >= quiz.length - 1" @click="onNextQuestion">Next question</button>
+    <button class="actions__item actions__item--centered" v-if="questionId == quiz.length - 1" @click="onRevealResult">Reveal result</button>
+  </div>
 </template>
 
-<style scoped lang="css">
+<style scoped lang="scss">
 .progress {
-  height: 5px;
-  background-color: black;
+  height: 100vh;
+  background-color: rgb(100 186 130 / 20%);
   position: absolute;
   top: 0;
   left: 0;
+  z-index: -1;
+}
+
+.question-card {
+  margin: 0 auto;
+  max-width: 1140px;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: left;
+  padding: 3.5vw;
+  border-radius: 5px;
+  box-shadow: rgba(57,73,76,.35) 0 1px 6px 0;
+  //background: rgb(255 255 255/84%);
+  background-color: grey;
+}
+
+.centered {
+  text-align: center;
+}
+
+.question-title {
+  font-size: 2rem;
+}
+
+.progress-number {
+  font-size: 1.75rem;
 }
 
 .options {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+
+  &__item {
+    width: calc(100% - 20px);
+    padding: 20px 10px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+  }
+
+  input {
+    width: 1.3em;
+    height: 1.3em;
+    background-color: white;
+    border-radius: 50%;
+    vertical-align: middle;
+    border: 1px solid #848484;
+    appearance: none;
+    outline: none;
+    cursor: pointer;
+
+    &:checked {
+      background-color: gray;
+    }
+  }
+
+  label {
+    padding-left: 10px;
+  }
+}
+
+.actions {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+
+  &__item {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    color: black;
+    text-transform: uppercase;
+
+    &--centered {
+      position: absolute;
+      bottom: 50px;
+    }
+  }
 }
 </style>

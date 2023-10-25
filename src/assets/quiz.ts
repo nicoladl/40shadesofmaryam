@@ -9,7 +9,7 @@ export const quiz: Array<Question> = [
             "27th of November 1983",
             "22nd of November 1983",
         ],
-        correctAnswers: [0, 1],
+        correctAnswers: [0],
     },
     {
         question: "Where was Maryam born?",
@@ -23,8 +23,8 @@ export const quiz: Array<Question> = [
     },
     {
         question: "Which school or university did Maryam attend?",
-        options: ["ETH", "ETF", "SUPSI", "UT"],
-        correctAnswers: [0],
+        options: ["ETH", "ETF", "SUPSI", "Private University of Tehran"],
+        correctAnswers: [0, 2, 3],
     },
     {
         question: "Name countries she has lived",
@@ -207,8 +207,8 @@ export const quiz: Array<Question> = [
         correctAnswers: [0, 1, 3],
     },
     {
-        question: "What's Maryam's favorite winter activity?",
-        options: ["Skiing or snowboarding", "Building snowmen", "Sipping hot cocoa by the fireplace", "Building igloos"],
-        correctAnswers: [0, 2, 3],
+        question: "What's Maryam's favorite bread?",
+        options: ["Dinkel", "Dunkel", "White Bread", "Aelplerbrot"],
+        correctAnswers: [1],
     }
 ];
