@@ -78,22 +78,6 @@ watch(
     align-items: center;
   }
 
-  input {
-    width: 1.3em;
-    height: 1.3em;
-    background-color: white;
-    border-radius: 50%;
-    vertical-align: middle;
-    border: 1px solid #848484;
-    appearance: none;
-    outline: none;
-    cursor: pointer;
-
-    &:checked {
-      background-color: gray;
-    }
-  }
-
   label {
     padding-left: 10px;
   }

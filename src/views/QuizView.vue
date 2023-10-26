@@ -14,16 +14,16 @@ const route = useRoute()
 const questionId = ref<number>(Number(route.query.questionId))
 const question = ref<Question>(quizState.questions.value[questionId.value].question)
 
-const onPrevQuestion = () => {
-  router.push(`/quiz?questionId=${questionId.value - 1}`)
+const onPrevQuestion = async () => {
+  await router.push(`/quiz?questionId=${questionId.value - 1}`)
 }
 
-const onNextQuestion = () => {
-  router.push(`/quiz?questionId=${questionId.value + 1}`)
+const onNextQuestion = async () => {
+  await router.push(`/quiz?questionId=${questionId.value + 1}`)
 }
 
-const onRevealResult = () => {
-  router.push('/result')
+const onRevealResult = async () => {
+  await router.push('/result')
 }
 
 watch(
@@ -63,19 +63,6 @@ watch(
 </template>
 
 <style scoped lang="scss">
-.question-card {
-  margin: 0 auto;
-  max-width: 1140px;
-  width: 100%;
-  box-sizing: border-box;
-  text-align: left;
-  padding: 3.5vw;
-  border-radius: 5px;
-  box-shadow: rgba(57, 73, 76, .35) 0 1px 6px 0;
-  //background: rgb(255 255 255/84%);
-  background-color: grey;
-}
-
 .centered {
   text-align: center;
 }
