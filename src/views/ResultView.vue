@@ -47,7 +47,7 @@ const onShare = async () => {
 }
 
 const onRestart = () => {
-  router.push('/quiz?question=1')
+  router.push('/quiz?questionId=0')
 }
 </script>
 
@@ -55,7 +55,7 @@ const onRestart = () => {
   <div class="result">
     <h1>Quiz Completed!</h1>
     <h2>Thank you for taking the Maryam quiz!</h2>
-    <p>You've completed the quiz, and it's time to find out how well you know Maryam. But before we reveal your score,
+    <p>It's time to find out how well you know Maryam. But before we reveal your score,
       we want to say a few words.
 
       You are a very good friend of Maryam's, and she is lucky to have you!</p>

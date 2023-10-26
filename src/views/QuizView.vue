@@ -12,7 +12,7 @@ import OptionsList from "@/components/OptionsList.vue";
 
 const route = useRoute()
 const questionId = ref<number>(Number(route.query.questionId))
-const question = ref<Question>(quizState.questions.value[questionId.value].question)
+const question = ref<string>(quizState.questions.value[questionId.value].question)
 
 const onPrevQuestion = async () => {
   await router.push(`/quiz?questionId=${questionId.value - 1}`)
