@@ -7,7 +7,6 @@ import viteBasicSslPlugin from "@vitejs/plugin-basic-ssl";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '40shadesofmaryam',
   plugins: [
     vue(),
     vueJsx(),

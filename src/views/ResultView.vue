@@ -54,7 +54,7 @@ const onRestart = () => {
 <template>
   <div class="result">
     <h1>Quiz Completed!</h1>
-    <h2>Thank you for taking the Maryam quiz!</h2>
+    <h2>Thank you for taking the quiz!</h2>
     <p>It's time to find out how well you know Maryam. But before we reveal your score,
       we want to say a few words.
 
