@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import {ref, watch} from "vue";
-import type {Question} from "@/models/IQuestion";
 import {quiz} from "@/assets/quiz";
 import {useRoute} from "vue-router";
 import router from "@/router";
@@ -30,6 +29,7 @@ watch(
     () => route.query.questionId,
     (id) => {
       questionId.value = Number(id);
+      question.value = quizState.questions.value[questionId.value].question;
     },
 );
 </script>
