@@ -41,7 +41,6 @@ watch(
     <container type="question">
       <h2 class="centered question-title">{{ question }}</h2>
     </container>
-    <p class="centered progress-number">{{ questionId }} / {{ quiz.length - 1 }}</p>
     <OptionsList />
   </main>
   <div v-else>Question not found</div>
@@ -63,6 +62,7 @@ watch(
         @click="onRevealResult"
     />
   </Fixed>
+  <p class="centered progress-number">{{ questionId }} / {{ quiz.length - 1 }}</p>
 </template>
 
 <style scoped lang="scss">

@@ -76,12 +76,7 @@ watch(
 
   &__item {
     width: calc(100% - 20px);
-    padding: 20px 10px;
     margin-bottom: 10px;
-    background-color: #f9f9f9;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
   }
 
   label {
