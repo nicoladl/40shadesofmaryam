@@ -71,7 +71,9 @@ watch(
 }
 
 .question-title {
+  font-weight: 700;
   font-size: 2rem;
+  text-transform: uppercase;
 }
 
 .progress-number {
