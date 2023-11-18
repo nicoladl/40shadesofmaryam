@@ -8,6 +8,7 @@ import Button from "@/components/Button.vue";
 import Fixed from "@/components/Fixed.vue";
 import ProgressBar from "@/components/ProgressBar.vue";
 import OptionsList from "@/components/OptionsList.vue";
+import Container from "@/components/Container.vue";
 
 const route = useRoute()
 const questionId = ref<number>(Number(route.query.questionId))
@@ -37,7 +38,9 @@ watch(
 <template>
   <ProgressBar/>
   <main v-if="questionId < quiz.length && questionId >= 0">
-    <h2 class="centered question-title">{{ question }}</h2>
+    <container type="question">
+      <h2 class="centered question-title">{{ question }}</h2>
+    </container>
     <p class="centered progress-number">{{ questionId }} / {{ quiz.length - 1 }}</p>
     <OptionsList />
   </main>

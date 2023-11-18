@@ -1,8 +1,13 @@
 <template>
   <div class="options">
-    <div v-for="(option, index) in question.options" class="options__item" @click="selectCheckbox(index)">
+    <Container
+        v-for="(option, index) in question.options"
+        class="options__item"
+        @click="selectCheckbox(index)"
+        :type="`${index}`"
+    >
       <Option :option="option" @select="selectCheckbox(index)" :index="index" :checked-answers="checkedAnswers"/>
-    </div>
+    </Container>
   </div>
 </template>
 
@@ -12,6 +17,7 @@ import {quizState} from "@/state/quizState";
 import {useRoute} from "vue-router";
 import {ref, watch} from "vue";
 import {type Question} from "@/models/IQuestion";
+import Container from "@/components/Container.vue";
 
 const route = useRoute()
 
@@ -26,7 +32,7 @@ const checkedAnswers = ref<Array<number>>([]);
 
 const onCheckboxChange = () => {
   quizState.setAnswer(questionId.value, checkedAnswers.value)
-  const calculateResult = (givenAnswers: Array[number], correctAnswers: Array[number]): number => (
+  const calculateResult = (givenAnswers: Array<number>, correctAnswers: Array<number>): number => (
       givenAnswers.reduce((count: number, value: number) => {
         if (correctAnswers.includes(value)) {
           return count + 1;
