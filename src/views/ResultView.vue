@@ -6,6 +6,7 @@ import html2canvas from "html2canvas";
 import {quiz} from "@/assets/quiz";
 import type {Question} from "@/models/IQuestion";
 import router from "@/router";
+import Container from "@/components/Container.vue";
 
 const sumCorrectAnswers = (quizData): number => {
   return quizData.reduce((total: number, question: Question) => {
@@ -16,13 +17,21 @@ const sumCorrectAnswers = (quizData): number => {
 const results = ref<Array<number>>(quizState.results.value)
 const score = ref<number>(0)
 const isScoreCalculated = ref<boolean | null>(null)
+const isScoreCalculating = ref<boolean>(false)
 const totalScore = ref<number>(sumCorrectAnswers(quiz))
 
 const canShare: boolean = navigator.canShare
 const files = ref<Array<File>>([])
 
+document.body.classList.add('result-page');
+
 const calculateScoreAndGenerateScreenshot = () => {
-  isScoreCalculated.value = false
+  isScoreCalculating.value = true
+  // fake timer
+  setTimeout(() => {
+    // isScoreCalculating.value = false
+  }, 5000)
+
   html2canvas(document.body, {useCORS: true})
       .then((canvas) => {
         canvas.toBlob((blob) => {
@@ -53,7 +62,9 @@ const onRestart = () => {
 
 <template>
   <div class="result">
-    <h1>Quiz Completed!</h1>
+    <Container type="question">
+      <h1>Quiz Completed!</h1>
+    </Container>
     <h2>Thank you for taking the quiz!</h2>
     <p>It's time to find out how well you know Maryam. But before we reveal your score,
       we want to say a few words.
@@ -65,6 +76,12 @@ const onRestart = () => {
         :label="'Calculate my score'"
         @click="calculateScoreAndGenerateScreenshot"
     />
+
+    <transition name="scale">
+      <div class="loader" v-if="isScoreCalculating && !isScoreCalculated">
+        <p v-if="isScoreCalculating">NASA is calculating the score... Hold Tight! 🚀🌠</p>
+      </div>
+    </transition>
 
     <div v-if="isScoreCalculated">
       <h1 v-if="files.length > 0">points: {{ score }} / {{ totalScore }}</h1>
@@ -79,7 +96,8 @@ const onRestart = () => {
       <div v-if="score >= 10 && score <= 19">
         <h2>Budding Confidante</h2>
         <p>You know Maryam quite well. Your friendship is blossoming! You've collected a treasure trove of insights into
-          her preferences and personality. You're becoming a trusted friend, and your bond with Maryam is growing stronger
+          her preferences and personality. You're becoming a trusted friend, and your bond with Maryam is growing
+          stronger
           with every moment you share.</p>
       </div>
 
@@ -98,17 +116,17 @@ const onRestart = () => {
 
       <div v-if="score >= 40 && score <= 45">
         <h2>Maryam's Bestie</h2>
-        <p>Congratulations! You're not just a friend; you're Maryam's bestie. Your friendship is a treasure, characterized
+        <p>Congratulations! You're not just a friend; you're Maryam's bestie. Your friendship is a treasure,
+          characterized
           by an unbreakable bond, deep understanding, and endless fun. Maryam is lucky to have you, and you're lucky to
           have her as a cherished friend.</p>
       </div>
 
       <Button
-        :label="'Restart quiz'"
-        @click="onRestart"
+          :label="'Restart quiz'"
+          @click="onRestart"
       />
     </div>
-    <div v-if="isScoreCalculated === false">NASA is calculating the score... Hold Tight! 🚀🌠</div>
 
     <div v-if="canShare">
       <Button
@@ -119,3 +137,54 @@ const onRestart = () => {
     </div>
   </div>
 </template>
+
+<style lang="scss" scoped>
+.result {
+  margin: 0 20px;
+  text-align: center;
+}
+
+h2 {
+  padding: 20px 15%;
+}
+
+.loader {
+  border: 1px solid black;
+  border-radius: 3px;
+  height: 5px;
+  width: 100%;
+  margin: 20px 0;
+  position: relative;
+
+  &::after {
+    content: '';
+    background-color: black;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+}
+
+.scale-enter-active {
+  &.loader {
+    transition: transform 5s;
+    transform-origin: left;
+
+    &::after {
+      transition: transform 5s;
+      transform-origin: left;
+    }
+  }
+}
+
+.scale-enter-from,
+.scale-leave-to {
+  &.loader {
+    &::after {
+      transform: scaleX(0);
+    }
+  }
+}
+</style>
