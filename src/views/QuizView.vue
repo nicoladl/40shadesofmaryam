@@ -5,10 +5,9 @@ import {useRoute} from "vue-router";
 import router from "@/router";
 import {quizState} from "@/state/quizState";
 import Button from "@/components/Button.vue";
+import Question from "@/components/Question.vue";
 import Fixed from "@/components/Fixed.vue";
 import ProgressBar from "@/components/ProgressBar.vue";
-import OptionsList from "@/components/OptionsList.vue";
-import Container from "@/components/Container.vue";
 
 const route = useRoute()
 const questionId = ref<number>(Number(route.query.questionId))
@@ -36,44 +35,39 @@ watch(
 </script>
 
 <template>
-  <ProgressBar/>
-  <main v-if="questionId < quiz.length && questionId >= 0">
-    <container type="question">
-      <h2 class="centered question-title">{{ question }}</h2>
-    </container>
-    <OptionsList />
-  </main>
-  <div v-else>Question not found</div>
+  <div class="container">
+    <ProgressBar/>
+    <Question />
 
-  <Fixed>
-    <Button
-        :disabled="questionId > quiz.length - 1 || questionId <= 0"
-        :label="'Prev question'"
-        @click="onPrevQuestion"
-    />
-    <Button
-        :disabled="questionId >= quiz.length - 1"
-        :label="'Next question'"
-        @click="onNextQuestion"
-    />
-    <Button
-        v-if="questionId == quiz.length - 1"
-        :label="'Reveal result'"
-        @click="onRevealResult"
-    />
-  </Fixed>
-  <p class="centered progress-number">{{ questionId }} / {{ quiz.length - 1 }}</p>
+    <Fixed>
+      <Button
+          :disabled="questionId > quiz.length - 1 || questionId <= 0"
+          :label="'Prev question'"
+          @click="onPrevQuestion"
+      />
+      <Button
+          :disabled="questionId >= quiz.length - 1"
+          :label="'Next question'"
+          @click="onNextQuestion"
+      />
+      <Button
+          v-if="questionId == quiz.length - 1"
+          :label="'Reveal result'"
+          @click="onRevealResult"
+      />
+    </Fixed>
+    <p class="centered progress-number">{{ questionId }}/{{ quiz.length - 1 }}</p>
+  </div>
 </template>
 
 <style scoped lang="scss">
-.centered {
-  text-align: center;
+.container {
+  margin: 0 20px;
+  margin-top: 40px;
 }
 
-.question-title {
-  font-weight: 700;
-  font-size: 2rem;
-  text-transform: uppercase;
+.centered {
+  text-align: center;
 }
 
 .progress-number {

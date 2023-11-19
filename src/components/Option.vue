@@ -24,20 +24,24 @@ const props = defineProps({ option: String, index: Number, checkedAnswers: Array
   justify-content: space-between;
 
   input {
-    width: 1.3em;
-    height: 1.3em;
+    width: 25px;
+    height: 25px;
     background-color: white;
     border-radius: 50%;
     vertical-align: middle;
-    border: 1px solid #848484;
+    border: 3px solid black;
     appearance: none;
     outline: none;
     cursor: pointer;
     margin-right: 10px;
 
     &:checked {
-      background-color: gray;
+      background-color: red;
     }
+  }
+
+  label {
+    width: 85%;
   }
 }
 </style>

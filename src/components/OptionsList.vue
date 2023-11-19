@@ -76,11 +76,9 @@ watch(
 
   &__item {
     width: calc(100% - 20px);
-    margin-bottom: 10px;
-  }
-
-  label {
-    padding-left: 10px;
+    margin-bottom: 20px;
+    font-size: 1.25em;
+    line-height: 1.25em;
   }
 }
 </style>

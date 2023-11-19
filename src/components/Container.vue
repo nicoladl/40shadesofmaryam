@@ -11,19 +11,19 @@ const props = defineProps({ type: String })
 
 <style lang="scss" scoped>
 .container {
-  padding: 30px 10px;
-  border: 1px solid black;
+  padding: 10px 10px;
+  border: 3px solid black;
   border-radius: 10px;
   position: relative;
 
   &:after {
     content: "";
     position: absolute;
-    width: 100%;
-    height: 100%;
+    width: calc(100% + 7px);
+    height: calc(100% + 7px);
     background-color: black;
-    top: 10px;
-    left: 10px;
+    top: 1px;
+    right: 1px;
     z-index: -1;
     border-radius: 10px;
   }
