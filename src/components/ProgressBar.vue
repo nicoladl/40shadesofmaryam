@@ -13,7 +13,12 @@ const progressBarWidth = ref<number>(0)
 watch(
     () => route.query.questionId,
     (id) => {
-      progressBarWidth.value = (100 / quizState.questions.value.length) * (Number(id) + 1)
+      if (Number(id) === 40) {
+        progressBarWidth.value = 100
+        return
+      }
+
+      progressBarWidth.value = (100 / quizState.questions.value.length) * (Number(id))
     }, { immediate: true }
 );
 </script>
