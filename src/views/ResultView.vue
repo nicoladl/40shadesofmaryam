@@ -8,7 +8,7 @@ import type {Question} from "@/models/IQuestion";
 import router from "@/router";
 import Container from "@/components/Container.vue";
 
-const sumCorrectAnswers = (quizData): number => {
+const sumCorrectAnswers = (quizData: Array<Question>): number => {
   return quizData.reduce((total: number, question: Question) => {
     return total + question.correctAnswers.length;
   }, 0);
@@ -85,7 +85,7 @@ const onRestart = () => {
 
     <transition name="scale">
       <div class="loader" v-if="isScoreCalculating && !isScoreCalculated">
-        <p v-if="isScoreCalculating">NASA is calculating the score... Hold Tight! 🚀🌠</p>
+        <p v-if="isScoreCalculating">NASA is calculating the score... Hold Tight!</p>
       </div>
     </transition>
 
@@ -94,7 +94,9 @@ const onRestart = () => {
         <Container type="result">
           <h1>Inquisitive Explorer</h1>
         </Container>
-        <h2 v-if="files.length > 0" class="score">{{ score }}</h2>
+        <div class="score-container">
+          <h2 v-if="files.length > 0" class="score">{{ score }}</h2><span class="bound">/{{ totalScore }}</span>
+        </div>
         <p>You're just getting to know Maryam. Keep exploring your friendship! You've taken the first steps on this
           delightful journey of friendship. There's so much more to learn about Maryam, and you're on the path to
           uncovering all the wonderful things that make her unique.</p>
@@ -104,7 +106,9 @@ const onRestart = () => {
         <Container type="result">
           <h1>Budding Confidante</h1>
         </Container>
-        <h2 v-if="files.length > 0" class="score">{{ score }}</h2>
+        <div class="score-container">
+          <h2 v-if="files.length > 0" class="score">{{ score }}</h2><span class="bound">/{{ totalScore }}</span>
+        </div>
         <p>You know Maryam quite well. Your friendship is blossoming! You've collected a treasure trove of insights into
           her preferences and personality. You're becoming a trusted friend, and your bond with Maryam is growing
           stronger
@@ -115,7 +119,9 @@ const onRestart = () => {
         <Container type="result">
           <h1>Ultimate Companion</h1>
         </Container>
-        <h2 v-if="files.length > 0" class="score">{{ score }}</h2>
+        <div class="score-container">
+          <h2 v-if="files.length > 0" class="score">{{ score }}</h2><span class="bound">/{{ totalScore }}</span>
+        </div>
         <p>You're a true friend of Maryam! Your bond is unbreakable. Your profound understanding of Maryam's world is
           truly special. Your friendship is built on trust, shared experiences, and genuine care, making it a remarkable
           and enduring connection.</p>
@@ -125,7 +131,9 @@ const onRestart = () => {
         <Container type="result">
           <h1>Kindred Spirit</h1>
         </Container>
-        <h2 v-if="files.length > 0" class="score">{{ score }}</h2>
+        <div class="score-container">
+          <h2 v-if="files.length > 0" class="score">{{ score }}</h2><span class="bound">/{{ totalScore }}</span>
+        </div>
         <p>You and Maryam share a remarkable friendship. Your bond is like no other, filled with trust, laughter, and
           wonderful memories. You've embraced Maryam's uniqueness, and it has only deepened your connection.</p>
       </div>
@@ -134,7 +142,9 @@ const onRestart = () => {
         <Container type="result">
           <h1>Maryam's Bestie</h1>
         </Container>
-        <h2 v-if="files.length > 0" class="score">{{ score }}</h2>
+        <div class="score-container">
+          <h2 v-if="files.length > 0" class="score">{{ score }}</h2><span class="bound">/{{ totalScore }}</span>
+        </div>
         <p>Congratulations! You're not just a friend; you're Maryam's bestie. Your friendship is a treasure,
           characterized
           by an unbreakable bond, deep understanding, and endless fun. Maryam is lucky to have you, and you're lucky to
@@ -168,23 +178,34 @@ const onRestart = () => {
   text-align: center;
 }
 
-.score {
-  font-family: 'Press Start 2P', Arial, sans-serif;
-  font-size: 5em;
-  background-image: linear-gradient(
-          -225deg,
-          #231557 0%,
-          #44107a 29%,
-          #ff1361 67%,
-          #fff800 100%
-  );
-  background-size: 100% auto;
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  display: inline-block;
-  line-height: 1em;
-  margin: 40px 0 20px;
+.score-container {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+
+  .score {
+    font-family: 'Press Start 2P', Arial, sans-serif;
+    font-size: 5em;
+    background-image: linear-gradient(
+            -225deg,
+            #231557 0%,
+            #44107a 29%,
+            #ff1361 67%,
+            #fff800 100%
+    );
+    background-size: 100% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    line-height: 1em;
+    margin: 40px 0 20px;
+  }
+
+  .bound {
+    font-family: 'IBM Plex Mono', Arial, sans-serif;
+    font-size: 1em;
+  }
 }
 
 .hashtag {
