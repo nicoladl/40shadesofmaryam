@@ -140,6 +140,7 @@ const onRestart = () => {
           by an unbreakable bond, deep understanding, and endless fun. Maryam is lucky to have you, and you're lucky to
           have her as a cherished friend.</p>
       </div>
+      <p class="hashtag">#40shadesofmaryam</p>
 
       <Button
           :label="'Restart quiz'"
@@ -147,7 +148,7 @@ const onRestart = () => {
       />
     </div>
 
-    <div v-if="canShare">
+    <div v-if="canShare && isScoreCalculated">
       <Button
           v-if="files.length > 0"
           :label="'Share'"
@@ -170,6 +171,25 @@ const onRestart = () => {
 .score {
   font-family: 'Press Start 2P', Arial, sans-serif;
   font-size: 5em;
+  background-image: linear-gradient(
+          -225deg,
+          #231557 0%,
+          #44107a 29%,
+          #ff1361 67%,
+          #fff800 100%
+  );
+  background-size: 100% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  line-height: 1em;
+  margin: 40px 0 20px;
+}
+
+.hashtag {
+  color: white;
+  text-transform: uppercase;
 }
 
 .loader {
