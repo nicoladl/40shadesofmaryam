@@ -62,10 +62,10 @@ const onRestart = () => {
 
 <template>
   <div class="result">
-    <Container type="question">
-      <h1>Quiz Completed!</h1>
-    </Container>
     <div v-if="!isScoreCalculated">
+      <Container type="question">
+        <h1>Quiz Completed!</h1>
+      </Container>
       <h2>Thank you for taking the quiz!</h2>
       <p>It's time to find out how well you know Maryam. But before we reveal your score,
         we want to say a few words.
@@ -90,17 +90,21 @@ const onRestart = () => {
     </transition>
 
     <div v-if="isScoreCalculated">
-      <h1 v-if="files.length > 0">points: {{ score }} / {{ totalScore }}</h1>
-
       <div v-if="score >= 0 && score <= 9">
-        <h2>Inquisitive Explorer</h2>
+        <Container type="result">
+          <h2>Inquisitive Explorer</h2>
+        </Container>
+        <h1 v-if="files.length > 0">points: {{ score }} / {{ totalScore }}</h1>
         <p>You're just getting to know Maryam. Keep exploring your friendship! You've taken the first steps on this
           delightful journey of friendship. There's so much more to learn about Maryam, and you're on the path to
           uncovering all the wonderful things that make her unique.</p>
       </div>
 
       <div v-if="score >= 10 && score <= 19">
-        <h2>Budding Confidante</h2>
+        <Container type="result">
+          <h2>Budding Confidante</h2>
+        </Container>
+        <h1 v-if="files.length > 0">points: {{ score }} / {{ totalScore }}</h1>
         <p>You know Maryam quite well. Your friendship is blossoming! You've collected a treasure trove of insights into
           her preferences and personality. You're becoming a trusted friend, and your bond with Maryam is growing
           stronger
@@ -108,20 +112,29 @@ const onRestart = () => {
       </div>
 
       <div v-if="score >= 20 && score <= 29">
-        <h2>Ultimate Companion</h2>
+        <Container type="result">
+          <h2>Ultimate Companion</h2>
+        </Container>
+        <h1 v-if="files.length > 0">points: {{ score }} / {{ totalScore }}</h1>
         <p>You're a true friend of Maryam! Your bond is unbreakable. Your profound understanding of Maryam's world is
           truly special. Your friendship is built on trust, shared experiences, and genuine care, making it a remarkable
           and enduring connection.</p>
       </div>
 
       <div v-if="score >= 30 && score <= 39">
-        <h2>Kindred Spirit</h2>
+        <Container type="result">
+          <h2>Kindred Spirit</h2>
+        </Container>
+        <h1 v-if="files.length > 0">points: {{ score }} / {{ totalScore }}</h1>
         <p>You and Maryam share a remarkable friendship. Your bond is like no other, filled with trust, laughter, and
           wonderful memories. You've embraced Maryam's uniqueness, and it has only deepened your connection.</p>
       </div>
 
       <div v-if="score >= 40 && score <= 45">
-        <h2>Maryam's Bestie</h2>
+        <Container type="result">
+          <h2>Maryam's Bestie</h2>
+        </Container>
+        <h1 v-if="files.length > 0">points: {{ score }} / {{ totalScore }}</h1>
         <p>Congratulations! You're not just a friend; you're Maryam's bestie. Your friendship is a treasure,
           characterized
           by an unbreakable bond, deep understanding, and endless fun. Maryam is lucky to have you, and you're lucky to

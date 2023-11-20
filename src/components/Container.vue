@@ -29,8 +29,13 @@ const props = defineProps({ type: String })
   }
 
   &__question,
-  &__button {
+  &__button,
+  &__result {
     background-color: white;
+  }
+
+  &__result {
+    color: #704cf0;
   }
 
   &__0 {
