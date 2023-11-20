@@ -92,9 +92,9 @@ const onRestart = () => {
     <div v-if="isScoreCalculated">
       <div v-if="score >= 0 && score <= 9">
         <Container type="result">
-          <h2>Inquisitive Explorer</h2>
+          <h1>Inquisitive Explorer</h1>
         </Container>
-        <h1 v-if="files.length > 0">points: {{ score }} / {{ totalScore }}</h1>
+        <h2 v-if="files.length > 0" class="score">{{ score }}</h2>
         <p>You're just getting to know Maryam. Keep exploring your friendship! You've taken the first steps on this
           delightful journey of friendship. There's so much more to learn about Maryam, and you're on the path to
           uncovering all the wonderful things that make her unique.</p>
@@ -102,9 +102,9 @@ const onRestart = () => {
 
       <div v-if="score >= 10 && score <= 19">
         <Container type="result">
-          <h2>Budding Confidante</h2>
+          <h1>Budding Confidante</h1>
         </Container>
-        <h1 v-if="files.length > 0">points: {{ score }} / {{ totalScore }}</h1>
+        <h2 v-if="files.length > 0" class="score">{{ score }}</h2>
         <p>You know Maryam quite well. Your friendship is blossoming! You've collected a treasure trove of insights into
           her preferences and personality. You're becoming a trusted friend, and your bond with Maryam is growing
           stronger
@@ -113,9 +113,9 @@ const onRestart = () => {
 
       <div v-if="score >= 20 && score <= 29">
         <Container type="result">
-          <h2>Ultimate Companion</h2>
+          <h1>Ultimate Companion</h1>
         </Container>
-        <h1 v-if="files.length > 0">points: {{ score }} / {{ totalScore }}</h1>
+        <h2 v-if="files.length > 0" class="score">{{ score }}</h2>
         <p>You're a true friend of Maryam! Your bond is unbreakable. Your profound understanding of Maryam's world is
           truly special. Your friendship is built on trust, shared experiences, and genuine care, making it a remarkable
           and enduring connection.</p>
@@ -123,18 +123,18 @@ const onRestart = () => {
 
       <div v-if="score >= 30 && score <= 39">
         <Container type="result">
-          <h2>Kindred Spirit</h2>
+          <h1>Kindred Spirit</h1>
         </Container>
-        <h1 v-if="files.length > 0">points: {{ score }} / {{ totalScore }}</h1>
+        <h2 v-if="files.length > 0" class="score">{{ score }}</h2>
         <p>You and Maryam share a remarkable friendship. Your bond is like no other, filled with trust, laughter, and
           wonderful memories. You've embraced Maryam's uniqueness, and it has only deepened your connection.</p>
       </div>
 
       <div v-if="score >= 40 && score <= 45">
         <Container type="result">
-          <h2>Maryam's Bestie</h2>
+          <h1>Maryam's Bestie</h1>
         </Container>
-        <h1 v-if="files.length > 0">points: {{ score }} / {{ totalScore }}</h1>
+        <h2 v-if="files.length > 0" class="score">{{ score }}</h2>
         <p>Congratulations! You're not just a friend; you're Maryam's bestie. Your friendship is a treasure,
           characterized
           by an unbreakable bond, deep understanding, and endless fun. Maryam is lucky to have you, and you're lucky to
@@ -152,7 +152,11 @@ const onRestart = () => {
           v-if="files.length > 0"
           :label="'Share'"
           @click="onShare"
-      />
+      >
+        <Container :type="'button'">
+          <button>Share!</button>
+        </Container>
+      </Button>
     </div>
   </div>
 </template>
@@ -163,8 +167,9 @@ const onRestart = () => {
   text-align: center;
 }
 
-h2 {
-  padding: 20px 15%;
+.score {
+  font-family: 'Press Start 2P', Arial, sans-serif;
+  font-size: 5em;
 }
 
 .loader {

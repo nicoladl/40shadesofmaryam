@@ -20,6 +20,11 @@ export default defineConfig({
             styles: 'wght@700',
             defer: true,
           },
+          {
+            name: 'Press Start 2P',
+            styles: 'wght@400',
+            defer: true,
+          },
         ]
       }
     }),
