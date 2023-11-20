@@ -1,5 +1,5 @@
 <template>
-  <div v-if="questionId < quiz.length && questionId >= 0">
+  <div v-if="questionId <= quiz.length && questionId >= 1">
     <Container type="question">
       <h2 class="centered question-title">{{ question }}</h2>
     </Container>
@@ -20,13 +20,15 @@ import {quizState} from "@/state/quizState";
 
 const route = useRoute()
 const questionId = ref<number>(Number(route.query.questionId))
-const question = ref<string>(quizState.questions.value[questionId.value].question)
+const question = ref<string>(quizState.questions.value[questionId.value - 1].question)
 
 watch(
     () => route.query.questionId,
     (id) => {
       questionId.value = Number(id);
-      question.value = quizState.questions.value[questionId.value].question;
+      console.log(questionId.value)
+      question.value = quizState.questions.value[questionId.value - 1].question;
+      console.log(question.value)
     },
 );
 </script>

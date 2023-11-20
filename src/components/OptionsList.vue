@@ -61,8 +61,8 @@ watch(
     () => route.query.questionId,
     (id) => {
       questionId.value = Number(id);
-      question.value = quizState.questions.value[Number(id)];
-      answers.value = quizState.answers.value[Number(id)]
+      question.value = quizState.questions.value[Number(id) - 1];
+      answers.value = quizState.answers.value[Number(id) - 1]
       checkedAnswers.value = answers.value ? answers.value : []
     }, {immediate: true}
 );

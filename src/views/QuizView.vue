@@ -14,7 +14,7 @@ import Container from "@/components/Container.vue";
 
 const route = useRoute()
 const questionId = ref<number>(Number(route.query.questionId))
-const question = ref<string>(quizState.questions.value[questionId.value].question)
+const question = ref<string>(quizState.questions.value[questionId.value - 1].question)
 
 const onPrevQuestion = async () => {
   await router.push(`/quiz?questionId=${questionId.value - 1}`)
@@ -32,7 +32,7 @@ watch(
     () => route.query.questionId,
     (id) => {
       questionId.value = Number(id);
-      question.value = quizState.questions.value[questionId.value].question;
+      question.value = quizState.questions.value[questionId.value - 1].question;
     },
 );
 </script>
@@ -43,14 +43,14 @@ watch(
 
   <Fixed>
     <Button
-        :disabled="questionId > quiz.length - 1 || questionId <= 0"
+        :disabled="questionId > quiz.length || questionId <= 1"
         :label="'Prev question'"
         @click="onPrevQuestion"
     >
       <img :src="prev" alt="Prev question" width="75">
     </Button>
     <Button
-        v-if="questionId == quiz.length - 1"
+        v-if="questionId == quiz.length"
         :label="'Reveal result'"
         @click="onRevealResult"
     >
@@ -59,15 +59,15 @@ watch(
       </Container>
     </Button>
     <Button
-        v-if="questionId != quiz.length - 1"
-        :disabled="questionId >= quiz.length - 1"
+        v-if="questionId != quiz.length"
+        :disabled="questionId >= quiz.length"
         :label="'Next question'"
         @click="onNextQuestion"
     >
       <img :src="next" alt="Next question" width="75">
     </Button>
   </Fixed>
-  <p class="centered progress-number">{{ questionId }}/{{ quiz.length - 1 }}</p>
+  <p class="centered progress-number">{{ questionId }}/{{ quiz.length }}</p>
 </template>
 
 <style scoped lang="scss">

@@ -13,6 +13,11 @@ const progressBarWidth = ref<number>(0)
 watch(
     () => route.query.questionId,
     (id) => {
+      if (Number(id) === 1) {
+        progressBarWidth.value = 0
+        return
+      }
+
       if (Number(id) === 40) {
         progressBarWidth.value = 100
         return
