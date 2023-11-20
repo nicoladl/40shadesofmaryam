@@ -8,6 +8,9 @@ import Button from "@/components/Button.vue";
 import Question from "@/components/Question.vue";
 import Fixed from "@/components/Fixed.vue";
 import ProgressBar from "@/components/ProgressBar.vue";
+import prev from "@/assets/prev.svg"
+import next from "@/assets/next.svg"
+import Container from "@/components/Container.vue";
 
 const route = useRoute()
 const questionId = ref<number>(Number(route.query.questionId))
@@ -35,42 +38,45 @@ watch(
 </script>
 
 <template>
-  <div class="container">
-    <ProgressBar/>
-    <Question />
+  <ProgressBar/>
+  <Question/>
 
-    <Fixed>
-      <Button
-          :disabled="questionId > quiz.length - 1 || questionId <= 0"
-          :label="'Prev question'"
-          @click="onPrevQuestion"
-      />
-      <Button
-          :disabled="questionId >= quiz.length - 1"
-          :label="'Next question'"
-          @click="onNextQuestion"
-      />
-      <Button
-          v-if="questionId == quiz.length - 1"
-          :label="'Reveal result'"
-          @click="onRevealResult"
-      />
-    </Fixed>
-    <p class="centered progress-number">{{ questionId }}/{{ quiz.length - 1 }}</p>
-  </div>
+  <Fixed>
+    <Button
+        :disabled="questionId > quiz.length - 1 || questionId <= 0"
+        :label="'Prev question'"
+        @click="onPrevQuestion"
+    >
+      <img :src="prev" alt="Prev question" width="75">
+    </Button>
+    <Button
+        v-if="questionId == quiz.length - 1"
+        :label="'Reveal result'"
+        @click="onRevealResult"
+    >
+      <Container :type="'button'">
+        <button>Reveal result</button>
+      </Container>
+    </Button>
+    <Button
+        v-if="questionId != quiz.length - 1"
+        :disabled="questionId >= quiz.length - 1"
+        :label="'Next question'"
+        @click="onNextQuestion"
+    >
+      <img :src="next" alt="Next question" width="75">
+    </Button>
+  </Fixed>
+  <p class="centered progress-number">{{ questionId }}/{{ quiz.length - 1 }}</p>
 </template>
 
 <style scoped lang="scss">
-.container {
-  margin: 0 20px;
-  margin-top: 40px;
-}
-
 .centered {
   text-align: center;
 }
 
 .progress-number {
   font-size: 1.75rem;
+  margin: 10px 0;
 }
 </style>

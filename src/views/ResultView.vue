@@ -65,17 +65,23 @@ const onRestart = () => {
     <Container type="question">
       <h1>Quiz Completed!</h1>
     </Container>
-    <h2>Thank you for taking the quiz!</h2>
-    <p>It's time to find out how well you know Maryam. But before we reveal your score,
-      we want to say a few words.
+    <div v-if="!isScoreCalculated">
+      <h2>Thank you for taking the quiz!</h2>
+      <p>It's time to find out how well you know Maryam. But before we reveal your score,
+        we want to say a few words.
 
-      You are a very good friend of Maryam's, and she is lucky to have you!</p>
+        You are a very good friend of Maryam's, and she is lucky to have you!</p>
 
-    <p>Now, it's time to see just how well you did.</p>
-    <Button
-        :label="'Calculate my score'"
-        @click="calculateScoreAndGenerateScreenshot"
-    />
+      <p>Now, it's time to see just how well you did.</p>
+      <Button
+          :label="'Calculate my score'"
+          @click="calculateScoreAndGenerateScreenshot"
+      >
+        <Container :type="'button'">
+          <button>Calculate my score</button>
+        </Container>
+      </Button>
+    </div>
 
     <transition name="scale">
       <div class="loader" v-if="isScoreCalculating && !isScoreCalculated">

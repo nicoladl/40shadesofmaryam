@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import router from "@/router";
 import Button from "@/components/Button.vue";
+import Container from "@/components/Container.vue";
 
 const onStartQuiz = () => {
   router.push('/quiz?questionId=1')
@@ -20,6 +21,10 @@ const onStartQuiz = () => {
       <li>Don't worry; there are no wrong answers – it's all in good fun!</li>
     </ul>
 
-    <Button @click="onStartQuiz" :label="'start the quiz'" />
+    <Button @click="onStartQuiz" :label="'start the quiz'">
+      <Container :type="'button'">
+        <button>Start the quiz</button>
+      </Container>
+    </Button>
   </main>
 </template>

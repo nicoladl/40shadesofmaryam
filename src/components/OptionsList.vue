@@ -79,6 +79,10 @@ watch(
     margin-bottom: 20px;
     font-size: 1.25em;
     line-height: 1.25em;
+
+    &:last-child {
+      margin: 0;
+    }
   }
 }
 </style>

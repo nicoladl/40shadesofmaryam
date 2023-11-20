@@ -1,6 +1,6 @@
 <template>
-  <button class="actions__item" :disabled="props.disabled" @click="onClick">
-    {{ props.label }}
+  <button class="actions__item" :disabled="props.disabled" :label="props.label" @click="onClick">
+    <slot></slot>
   </button>
 </template>
 
@@ -16,11 +16,8 @@ const onClick = () => {
 <style lang="scss">
 .actions {
   &__item {
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 5px;
-    color: black;
-    text-transform: uppercase;
+    background-color: transparent;
+    border: none;
   }
 }
 </style>

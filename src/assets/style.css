@@ -5,8 +5,19 @@ body {
     line-height: 1.75em;
     background-color: rgb(239 239 227);
     touch-action: none;
+    height: 100vh;
+    margin: 20px;
 }
 
 body.result-page {
     background-color: rgb(169 83 82);
+}
+
+button {
+    border: none;
+    background-color: transparent;
+    font-weight: 700;
+    font-size: 1rem;
+    line-height: 1em;
+    text-align: center;
 }

@@ -34,11 +34,10 @@ watch(
 <style lang="scss" scoped>
 .question-title {
   font-weight: 700;
-  font-size: 2rem;
+  font-size: 1.5rem;
   line-height: 1em;
   text-transform: uppercase;
   text-align: center;
-  padding: 20px 10px;
 }
 
 .question-options {

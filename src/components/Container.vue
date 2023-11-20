@@ -11,7 +11,7 @@ const props = defineProps({ type: String })
 
 <style lang="scss" scoped>
 .container {
-  padding: 10px 10px;
+  padding: 10px;
   border: 3px solid black;
   border-radius: 10px;
   position: relative;
@@ -28,7 +28,8 @@ const props = defineProps({ type: String })
     border-radius: 10px;
   }
 
-  &__question {
+  &__question,
+  &__button {
     background-color: white;
   }
 
