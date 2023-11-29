@@ -7,6 +7,7 @@ import {quiz} from "@/assets/quiz";
 import type {Question} from "@/models/IQuestion";
 import router from "@/router";
 import Container from "@/components/Container.vue";
+import ConfettiExplosion from "vue-confetti-explosion";
 
 const sumCorrectAnswers = (quizData: Array<Question>): number => {
   return quizData.reduce((total: number, question: Question) => {
@@ -91,6 +92,7 @@ const onRestart = () => {
     </transition>
 
     <div v-if="isScoreCalculated">
+      <ConfettiExplosion :particleCount="500" :duration="10000" :force="0.9" />
       <div v-if="score >= 0 && score <= 9">
         <Container type="result">
           <h1>Inquisitive Explorer</h1>
