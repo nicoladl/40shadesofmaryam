@@ -16,7 +16,7 @@ const onClick = () => {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .actions {
   &__item {
     background-color: transparent;
