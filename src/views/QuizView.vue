@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {ref, watch} from "vue";
+import {onMounted, onUnmounted, ref, watch} from "vue";
 import {quiz} from "@/assets/quiz";
 import {useRoute} from "vue-router";
 import router from "@/router";
@@ -7,10 +7,17 @@ import {quizState} from "@/state/quizState";
 import Button from "@/components/Button.vue";
 import Question from "@/components/Question.vue";
 import Fixed from "@/components/Fixed.vue";
-import ProgressBar from "@/components/ProgressBar.vue";
 import prev from "@/assets/prev.svg"
 import next from "@/assets/next.svg"
 import Container from "@/components/Container.vue";
+
+onMounted(() => {
+  document.body.classList.add('quiz-page');
+})
+
+onUnmounted(() => {
+  document.body.classList.remove('quiz-page');
+})
 
 const route = useRoute()
 const questionId = ref<number>(Number(route.query.questionId))

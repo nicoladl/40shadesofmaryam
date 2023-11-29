@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {quizState} from "@/state/quizState";
-import {ref} from "vue";
+import {onMounted, onUnmounted, ref} from "vue";
 import Button from "@/components/Button.vue";
 import html2canvas from "html2canvas";
 import {quiz} from "@/assets/quiz";
@@ -8,6 +8,14 @@ import type {Question} from "@/models/IQuestion";
 import router from "@/router";
 import Container from "@/components/Container.vue";
 import ConfettiExplosion from "vue-confetti-explosion";
+
+onMounted(() => {
+  document.body.classList.add('result-page');
+})
+
+onUnmounted(() => {
+  document.body.classList.remove('result-page');
+})
 
 const sumCorrectAnswers = (quizData: Array<Question>): number => {
   return quizData.reduce((total: number, question: Question) => {
@@ -23,8 +31,6 @@ const totalScore = ref<number>(sumCorrectAnswers(quiz))
 
 const canShare: boolean = navigator.canShare
 const files = ref<Array<File>>([])
-
-document.body.classList.add('result-page');
 
 const calculateScoreAndGenerateScreenshot = () => {
   isScoreCalculating.value = true
