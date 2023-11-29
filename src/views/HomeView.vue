@@ -21,7 +21,7 @@ const onStartQuiz = () => {
       <li>Don't worry; there are no wrong answers – it's all in good fun!</li>
     </ul>
 
-    <Button @click="onStartQuiz" :label="'start the quiz'">
+    <Button @click="onStartQuiz" :label="'start the quiz'" :wide="true">
       <Container :type="'button'">
         <button>Start the quiz</button>
       </Container>

@@ -75,6 +75,7 @@ const onRestart = () => {
       <p>Now, it's time to see just how well you did.</p>
       <Button
           :label="'Calculate my score'"
+          :wide="true"
           @click="calculateScoreAndGenerateScreenshot"
       >
         <Container :type="'button'">
@@ -162,6 +163,7 @@ const onRestart = () => {
       <Button
           v-if="files.length > 0"
           :label="'Share'"
+          :wide="true"
           @click="onShare"
       >
         <Container :type="'button'">
