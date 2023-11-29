@@ -9,6 +9,8 @@ import router from "@/router";
 import Container from "@/components/Container.vue";
 import ConfettiExplosion from "vue-confetti-explosion";
 
+// TOTAL IS 61
+
 onMounted(() => {
   document.body.classList.add('result-page');
 })
@@ -99,7 +101,7 @@ const onRestart = () => {
 
     <div v-if="isScoreCalculated">
       <ConfettiExplosion :particleCount="500" :duration="10000" :force="0.9" />
-      <div v-if="score >= 0 && score <= 9">
+      <div v-if="score >= 0 && score <= 10">
         <Container type="result">
           <h1>Inquisitive Explorer</h1>
         </Container>
@@ -111,7 +113,7 @@ const onRestart = () => {
           uncovering all the wonderful things that make her unique.</p>
       </div>
 
-      <div v-if="score >= 10 && score <= 19">
+      <div v-if="score >= 11 && score <= 25">
         <Container type="result">
           <h1>Budding Confidante</h1>
         </Container>
@@ -124,7 +126,7 @@ const onRestart = () => {
           with every moment you share.</p>
       </div>
 
-      <div v-if="score >= 20 && score <= 29">
+      <div v-if="score >= 26 && score <= 40">
         <Container type="result">
           <h1>Ultimate Companion</h1>
         </Container>
@@ -136,7 +138,7 @@ const onRestart = () => {
           and enduring connection.</p>
       </div>
 
-      <div v-if="score >= 30 && score <= 39">
+      <div v-if="score >= 41 && score <= 50">
         <Container type="result">
           <h1>Kindred Spirit</h1>
         </Container>
@@ -147,7 +149,7 @@ const onRestart = () => {
           wonderful memories. You've embraced Maryam's uniqueness, and it has only deepened your connection.</p>
       </div>
 
-      <div v-if="score >= 40 && score <= 45">
+      <div v-if="score >= 51 && score <= 61">
         <Container type="result">
           <h1>Maryam's Bestie</h1>
         </Container>

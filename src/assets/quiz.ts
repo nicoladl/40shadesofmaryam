@@ -14,12 +14,12 @@ export const quiz: Array<Question> = [
     {
         question: "Where was Maryam born?",
         options: [
-            "Tehran",
             "Isfahan",
+            "Tehran",
             "Berlin",
             "Shiraz"
         ],
-        correctAnswers: [0]
+        correctAnswers: [1]
     },
     {
         question: "How many siblings does Maryam have?",
@@ -32,44 +32,44 @@ export const quiz: Array<Question> = [
         correctAnswers: [3]
     },
     {
-        question: "Which school or university did Maryam attend?",
+        question: "Which schools or universities did Maryam attend?",
         options: [
             "ETH",
             "ETF",
             "SUPSI",
             "Private University of Tehran"
         ],
-        correctAnswers: [3]
+        correctAnswers: [0, 1, 3]
     },
     {
         question: "What is Maryam's second name?",
         options: [
-            "Kosar",
             "Gorbe",
             "Pashtool",
-            "Ira"
+            "Ira",
+            "Kosar",
         ],
-        correctAnswers: [0]
+        correctAnswers: [3]
     },
     {
         question: "Name countries she has lived",
         options: [
             "Italy",
-            "Switzerland",
             "Sweden",
+            "Switzerland",
             "France"
         ],
-        correctAnswers: [0, 1]
+        correctAnswers: [0, 2]
     },
     {
         question: "What musical instrument did Maryam play when she was young?",
         options: [
-            "Piano",
             "Guitar",
+            "Piano",
             "Violin",
             "Flute"
         ],
-        correctAnswers: [2]
+        correctAnswers: [1]
     },
     {
         question: "Name a famous landmark she's visited",
@@ -79,47 +79,47 @@ export const quiz: Array<Question> = [
             "Sri Lanka",
             "Patagonia"
         ],
-        correctAnswers: [3]
+        correctAnswers: [1]
     },
     {
-        question: "Which country is at the top of Maryam's travel bucket list?",
+        question: "Which countries are at the top of Maryam's travel bucket list?",
         options: [
             "Antarctica",
             "USA",
             "Japan",
             "Socotra"
         ],
-        correctAnswers: [0]
+        correctAnswers: [0, 3]
     },
     {
         question: "What's the most adventurous thing she's ever done?",
         options: [
             "Paragliding",
-            "Ferrata F K6",
-            "Taking the train without ticket",
+            "Remove a USB device without ejecting",
+            "Taking the train without a ticket",
             "Skydiving from 15,000 feet"
         ],
-        correctAnswers: [3]
+        correctAnswers: [0, 3]
     },
     {
-        question: "What's Maryam's signature dish or favorite meal?",
+        question: "What's Maryam's signature dish?",
         options: [
-            "Iranian Lasagna (Loobia polo)",
+            "Loobia polo",
             "Ghormeh sabzi",
             "Fesenjān",
-            "Salad with everything"
+            "Clean Out The Fridge salad"
         ],
-        correctAnswers: [2]
+        correctAnswers: [0, 1, 2, 3]
     },
     {
         question: "What's her favorite dessert?",
         options: [
-            "She doesn't like dessert",
             "Tiramisu",
             "Cheesecake",
-            "Carrot cake"
+            "Carrot cake",
+            "None of the above",
         ],
-        correctAnswers: [1]
+        correctAnswers: [3]
     },
     {
         question: "Favourite Maryam’s pizzeria?",
@@ -129,25 +129,25 @@ export const quiz: Array<Question> = [
             "San Gennaro",
             "Luigia"
         ],
-        correctAnswers: [2]
+        correctAnswers: [0]
     },
     {
         question: "What's Maryam's favorite bar in Zurich?",
         options: [
-            "Bohemia",
             "Bar am Wasser",
             "Tibits",
-            "None of the above"
+            "Bohemia",
+            "All of the above"
         ],
-        correctAnswers: [0]
+        correctAnswers: [2]
     },
     {
         question: "What is Maryam’s favorite cocktail?",
         options: [
-            "Margarita",
             "Old fashioned",
             "Caipirinha",
-            "Negroni"
+            "Negroni",
+            "Margarita",
         ],
         correctAnswers: [3]
     },
@@ -159,17 +159,17 @@ export const quiz: Array<Question> = [
             "Succession",
             "Big Bang Theory"
         ],
-        correctAnswers: [2]
+        correctAnswers: [0, 1, 2]
     },
     {
         question: "Which movie genres does Maryam prefer?",
         options: [
             "Italian love stories",
-            "Comedies",
             "Thrillers",
+            "Comedies",
             "Musical"
         ],
-        correctAnswers: [1]
+        correctAnswers: [0, 2]
     },
     {
         question: "What's Maryam's preferred way to spend a Saturday afternoon?",
@@ -179,7 +179,7 @@ export const quiz: Array<Question> = [
             "Bohemia",
             "Reading"
         ],
-        correctAnswers: [3]
+        correctAnswers: [0, 2]
     },
     {
         question: "Which famous person does Maryam admire the most?",
@@ -214,32 +214,32 @@ export const quiz: Array<Question> = [
     {
         question: "What's Maryam's favorite season?",
         options: [
-            "Fall (with all the cozy sweaters)",
-            "Summer (for the beachwear)",
-            "Spring (to break out the floral dresses)",
-            "Winter (she loves layering)"
-        ],
-        correctAnswers: [0]
-    },
-    {
-        question: "What's her most-used app on her phone?",
-        options: [
-            "TikTok",
-            "Instagram",
-            "Skyscanner",
-            "Sleepwatch"
+            "Fall",
+            "Summer",
+            "Spring",
+            "Winter"
         ],
         correctAnswers: [1]
     },
     {
+        question: "What's her most-used app on her phone?",
+        options: [
+            "Instagram",
+            "Skyscanner",
+            "Sleepwatch",
+            "TikTok",
+        ],
+        correctAnswers: [0, 3]
+    },
+    {
         question: "Which sport or physical activity does Maryam enjoy?",
         options: [
+            "Hiking",
             "Weight lift",
-            "Running",
             "Swimming",
             "Bowling"
         ],
-        correctAnswers: [2]
+        correctAnswers: [0, 1]
     },
     {
         question: "What's Maryam's preferred mode of transportation?",
@@ -249,17 +249,17 @@ export const quiz: Array<Question> = [
             "Train",
             "Scooter"
         ],
-        correctAnswers: [0]
+        correctAnswers: [0, 2]
     },
     {
         question: "What's her favorite music composer?",
         options: [
-            "Ennio Morricone",
             "Hans Zimmer",
             "Alan Silvestri",
+            "Ennio Morricone",
             "John Williams"
         ],
-        correctAnswers: [1]
+        correctAnswers: [2]
     },
     {
         question: "What's her favorite classic music composer?",
@@ -274,9 +274,9 @@ export const quiz: Array<Question> = [
     {
         question: "What's the title of her current job or profession?",
         options: [
+            "Manager of Procrastination Solutions",
             "Business case owner",
-            "Mechanical engineer",
-            "Chief Executive Officer",
+            "Head of Coffee Break Coordination",
             "Vice President of Napping Strategies"
         ],
         correctAnswers: [1]
@@ -309,7 +309,7 @@ export const quiz: Array<Question> = [
             "Sipping hot cocoa by the fireplace",
             "Building igloos"
         ],
-        correctAnswers: [2]
+        correctAnswers: []
     },
     {
         question: "Name the first job Maryam ever had",
@@ -325,11 +325,11 @@ export const quiz: Array<Question> = [
         question: "Where would Maryam want to live?",
         options: [
             "Zurich",
-            "Switzerland",
-            "Swiss Alps",
-            "Helvetica"
+            "Uster",
+            "Davos",
+            "Lugano"
         ],
-        correctAnswers: [0]
+        correctAnswers: [1]
     },
     {
         question: "Who's Maryam's favorite comedian?",
@@ -339,7 +339,7 @@ export const quiz: Array<Question> = [
             "Sebastian Maniscalco",
             "Jerry Seinfeld"
         ],
-        correctAnswers: [1]
+        correctAnswers: [1, 2]
     },
     {
         question: "What is one object Maryam can't live without?",
@@ -359,7 +359,7 @@ export const quiz: Array<Question> = [
             "Partner at home",
             "Mr. De Lazzari"
         ],
-        correctAnswers: [3]
+        correctAnswers: [0, 1, 2, 3]
     },
     {
         question: "What is one thing Maryam always wanted to do but haven't done yet?",
@@ -372,14 +372,14 @@ export const quiz: Array<Question> = [
         correctAnswers: []
     },
     {
-        question: "What's Maryam's favorite way to unwind after a long day?",
+        question: "What's Maryam's favorite animal?",
         options: [
-            "Reading a book",
-            "Watching TV",
-            "Instagram",
-            "Cooking"
+            "Dog",
+            "Sloth",
+            "Penguin",
+            "Lizard"
         ],
-        correctAnswers: [0]
+        correctAnswers: [2]
     },
     {
         question: "What is Maryam's favorite food?",
@@ -392,13 +392,13 @@ export const quiz: Array<Question> = [
         correctAnswers: [1, 3]
     },
     {
-        question: "What is the last thing that impressed Maryam?",
+        question: "What opinion do you think Maryam has about this quiz?",
         options: [
-            "Souvlaki",
-            "Pizza",
-            "Spare ribs",
-            "Everything Asefeh cooks"
+            "She probably thinks this quiz is more confusing than trying to teach a cat algebra.",
+            "She thinks this quiz is lame",
+            "As useful as sunglasses in a cave",
+            "Like teaching a penguin how to fly"
         ],
-        correctAnswers: [1]
+        correctAnswers: [0, 1, 3, 4]
     }
 ];
