@@ -38,7 +38,6 @@ watch(
 </script>
 
 <template>
-  <ProgressBar/>
   <Question/>
 
   <Fixed>
