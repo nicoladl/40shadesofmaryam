@@ -75,10 +75,11 @@ watch(
   align-items: flex-start;
 
   &__item {
-    width: calc(100% - 20px);
+    width: 100%;
     margin-bottom: 20px;
     font-size: 1.25em;
     line-height: 1.25em;
+    box-sizing: border-box;
 
     &:last-child {
       margin: 0;
