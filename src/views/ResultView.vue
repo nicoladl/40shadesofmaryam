@@ -38,11 +38,15 @@ const files = ref<Array<File>>([])
 
 const calculateScoreAndGenerateScreenshot = () => {
   isScoreCalculating.value = true
+
   // fake timer
   setTimeout(() => {
-    // isScoreCalculating.value = false
+    isScoreCalculating.value = false
+    isScoreCalculated.value = true
   }, 5000)
+}
 
+const onShare = async () => {
   html2canvas(document.body, {useCORS: true})
       .then((canvas) => {
         canvas.toBlob((blob) => {
@@ -50,16 +54,6 @@ const calculateScoreAndGenerateScreenshot = () => {
         })
       })
 
-  score.value = results.value.reduce((points, result) => {
-    return points + result
-  }, 0)
-
-  setTimeout(() => {
-    isScoreCalculated.value = true
-  }, 5000)
-}
-
-const onShare = async () => {
   const shareData = {
     files: files.value,
   };
