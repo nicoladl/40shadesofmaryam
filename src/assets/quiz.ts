@@ -95,7 +95,7 @@ export const quiz: Array<Question> = [
         question: "What's the most adventurous thing she's ever done?",
         options: [
             "Paragliding",
-            "Remove a USB device without ejecting",
+            "Removing a USB device without ejecting",
             "Taking the train without a ticket",
             "Skydiving from 15,000 feet"
         ],
@@ -182,14 +182,14 @@ export const quiz: Array<Question> = [
         correctAnswers: [0, 2]
     },
     {
-        question: "Which famous person does Maryam admire the most?",
+        question: "Which destination would Maryam most likely choose for a vacation?",
         options: [
-            "Elon Musk",
-            "Bill Gates",
-            "Michelle Obama",
-            "Maldini"
+            "Mountain cabin",
+            "Beach resort",
+            "European city tour",
+            "Safari adventure"
         ],
-        correctAnswers: [2]
+        correctAnswers: [1]
     },
     {
         question: "What's her favorite flower?",
@@ -282,14 +282,14 @@ export const quiz: Array<Question> = [
         correctAnswers: [1]
     },
     {
-        question: "Which word best describes Maryam's approach to life?",
+        question: "What peculiarity does Maryam have in life?",
         options: [
-            "Adventurous",
-            "Methodical",
-            "Spontaneous",
-            "Thoughtful"
+            "She likes the smell of the avocado seed",
+            "She doesn't like shopping",
+            "She collects vouchers",
+            "She never takes the last bite",
         ],
-        correctAnswers: [0]
+        correctAnswers: [1, 2, 3]
     },
     {
         question: "What would be Maryam's dream job if she weren't in her current profession?",
@@ -362,14 +362,14 @@ export const quiz: Array<Question> = [
         correctAnswers: [0, 1, 2, 3]
     },
     {
-        question: "What is one thing Maryam always wanted to do but haven't done yet?",
+        question: "Which languages does Maryam speak?",
         options: [
-            "Bunji jumping",
-            "Adopt a pet",
-            "Learn a new language",
-            "Add here"
+            "Italian",
+            "Swiss german",
+            "Farsi",
+            "English"
         ],
-        correctAnswers: []
+        correctAnswers: [0, 2, 3]
     },
     {
         question: "What's Maryam's favorite animal?",
