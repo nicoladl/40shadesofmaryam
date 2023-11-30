@@ -36,7 +36,7 @@ const isConfettiVisible = ref<boolean>(true)
 const canShare: boolean = navigator.canShare
 const files = ref<Array<File>>([])
 
-const calculateScoreAndGenerateScreenshot = () => {
+const fakeScoreCalculation = () => {
   isScoreCalculating.value = true
 
   // fake timer
@@ -47,7 +47,7 @@ const calculateScoreAndGenerateScreenshot = () => {
 }
 
 const onShare = async () => {
-  html2canvas(document.body, {useCORS: true})
+  await html2canvas(document.body, {useCORS: true})
       .then((canvas) => {
         canvas.toBlob((blob) => {
           return files.value = [new File([blob], '40shadesofmaryam.png', {type: blob.type})]
@@ -84,7 +84,7 @@ const explode = async () => {
       <Button
           :label="'Calculate my score'"
           :wide="true"
-          @click="calculateScoreAndGenerateScreenshot"
+          @click="fakeScoreCalculation"
       >
         <Container :type="'button'">
           <button>Calculate my score</button>
@@ -171,9 +171,8 @@ const explode = async () => {
       />
     </div>
 
-    <Fixed v-if="canShare && isScoreCalculated">
+    <Fixed v-if="isScoreCalculated">
       <Button
-          v-if="files.length > 0"
           :label="'Share'"
           :wide="true"
           @click="onShare"
