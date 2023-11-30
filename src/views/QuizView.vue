@@ -87,4 +87,8 @@ watch(
   font-size: 1.75rem;
   margin: 10px 0;
 }
+
+button {
+  touch-action: none
+}
 </style>
