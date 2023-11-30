@@ -28,6 +28,7 @@ body {
 .result-page #app {
     background-color: rgb(169 83 82);
     padding-bottom: 120px;
+    min-height: 100vh;
 }
 
 .quiz-page #app {
