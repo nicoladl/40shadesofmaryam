@@ -33,7 +33,7 @@ const isScoreCalculating = ref<boolean>(false)
 const totalScore = ref<number>(sumCorrectAnswers(quiz))
 const isConfettiVisible = ref<boolean>(true)
 
-const canShare: boolean = !!navigator.canShare ?? false
+const canShare: boolean = navigator.canShare
 const files = ref<Array<File>>([])
 
 const calculateScoreAndGenerateScreenshot = () => {
