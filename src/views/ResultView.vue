@@ -27,13 +27,13 @@ const sumCorrectAnswers = (quizData: Array<Question>): number => {
 }
 
 const results = ref<Array<number>>(quizState.results.value)
-const score = ref<number>(0)
+const score = ref<number>(results.value.reduce((points, result) => points + result, 0))
 const isScoreCalculated = ref<boolean | null>(null)
 const isScoreCalculating = ref<boolean>(false)
 const totalScore = ref<number>(sumCorrectAnswers(quiz))
 const isConfettiVisible = ref<boolean>(true)
 
-const canShare: boolean = navigator.canShare
+const canShare: boolean = !!navigator.canShare ?? false
 const files = ref<Array<File>>([])
 
 const calculateScoreAndGenerateScreenshot = () => {
@@ -112,7 +112,7 @@ const explode = async () => {
           <p class="confetti__trigger">click me for a confetti explosion</p>
         </Container>
         <div class="score-container">
-          <h2 v-if="files.length > 0" class="score">{{ score }}</h2><span class="bound">/{{ totalScore }}</span>
+          <h2 class="score">{{ score }}</h2><span class="bound">/{{ totalScore }}</span>
         </div>
         <p>You're just getting to know Maryam. Keep exploring your friendship! You've taken the first steps on this
           delightful journey of friendship. There's so much more to learn about Maryam, and you're on the path to
@@ -125,7 +125,7 @@ const explode = async () => {
           <p class="confetti__trigger">click me for a confetti explosion</p>
         </Container>
         <div class="score-container">
-          <h2 v-if="files.length > 0" class="score">{{ score }}</h2><span class="bound">/{{ totalScore }}</span>
+          <h2 class="score">{{ score }}</h2><span class="bound">/{{ totalScore }}</span>
         </div>
         <p>You know Maryam quite well. Your friendship is blossoming! You've collected a treasure trove of insights into
           her preferences and personality. You're becoming a trusted friend, and your bond with Maryam is growing
@@ -138,7 +138,7 @@ const explode = async () => {
           <p class="confetti__trigger">click me for a confetti explosion</p>
         </Container>
         <div class="score-container">
-          <h2 v-if="files.length > 0" class="score">{{ score }}</h2><span class="bound">/{{ totalScore }}</span>
+          <h2 class="score">{{ score }}</h2><span class="bound">/{{ totalScore }}</span>
         </div>
         <p>You're a true friend of Maryam! Your bond is unbreakable. Your profound understanding of Maryam's world is
           truly special. Your friendship is built on trust, shared experiences, and genuine care, making it a remarkable
@@ -151,7 +151,7 @@ const explode = async () => {
           <p class="confetti__trigger">click me for a confetti explosion</p>
         </Container>
         <div class="score-container">
-          <h2 v-if="files.length > 0" class="score">{{ score }}</h2><span class="bound">/{{ totalScore }}</span>
+          <h2 class="score">{{ score }}</h2><span class="bound">/{{ totalScore }}</span>
         </div>
         <p>You and Maryam share a remarkable friendship. Your bond is like no other, filled with trust, laughter, and
           wonderful memories. You've embraced Maryam's uniqueness, and it has only deepened your connection.</p>
@@ -163,7 +163,7 @@ const explode = async () => {
           <p class="confetti__trigger">click me for a confetti explosion</p>
         </Container>
         <div class="score-container">
-          <h2 v-if="files.length > 0" class="score">{{ score }}</h2><span class="bound">/{{ totalScore }}</span>
+          <h2 class="score">{{ score }}</h2><span class="bound">/{{ totalScore }}</span>
         </div>
         <p>Congratulations! You're not just a friend; you're Maryam's bestie. Your friendship is a treasure,
           characterized by an unbreakable bond, deep understanding, and endless fun. Maryam is lucky to have you, and
