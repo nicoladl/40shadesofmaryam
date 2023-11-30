@@ -10,7 +10,6 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 55px;
   display: flex;
   justify-content: space-between;
   padding: 20px;
