@@ -10,6 +10,7 @@ import Fixed from "@/components/Fixed.vue";
 import prev from "@/assets/prev.svg"
 import next from "@/assets/next.svg"
 import Container from "@/components/Container.vue";
+import ProgressBar from "@/components/ProgressBar.vue";
 
 onMounted(() => {
   document.body.classList.add('quiz-page');
@@ -45,6 +46,7 @@ watch(
 </script>
 
 <template>
+  <ProgressBar/>
   <Question/>
 
   <Fixed>

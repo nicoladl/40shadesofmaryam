@@ -26,9 +26,7 @@ watch(
     () => route.query.questionId,
     (id) => {
       questionId.value = Number(id);
-      console.log(questionId.value)
       question.value = quizState.questions.value[questionId.value - 1].question;
-      console.log(question.value)
     },
 );
 </script>

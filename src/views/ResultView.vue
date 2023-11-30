@@ -8,6 +8,7 @@ import type {Question} from "@/models/IQuestion";
 import router from "@/router";
 import Container from "@/components/Container.vue";
 import ConfettiExplosion from "vue-confetti-explosion";
+import Fixed from "@/components/Fixed.vue";
 
 // TOTAL IS 61
 
@@ -176,7 +177,7 @@ const explode = async () => {
       />
     </div>
 
-    <div v-if="canShare && isScoreCalculated">
+    <Fixed v-if="canShare && isScoreCalculated">
       <Button
           v-if="files.length > 0"
           :label="'Share'"
@@ -187,7 +188,7 @@ const explode = async () => {
           <button>Share!</button>
         </Container>
       </Button>
-    </div>
+    </Fixed>
   </div>
 </template>
 
