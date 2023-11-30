@@ -31,7 +31,7 @@ watch(
 <style lang="scss" scoped>
 .progress {
   background-color: rgb(169 83 82);
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
