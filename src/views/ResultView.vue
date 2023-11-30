@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {quizState} from "@/state/quizState";
-import {onMounted, onUnmounted, ref} from "vue";
+import {nextTick, onMounted, onUnmounted, ref} from "vue";
 import Button from "@/components/Button.vue";
 import html2canvas from "html2canvas";
 import {quiz} from "@/assets/quiz";
@@ -30,6 +30,7 @@ const score = ref<number>(0)
 const isScoreCalculated = ref<boolean | null>(null)
 const isScoreCalculating = ref<boolean>(false)
 const totalScore = ref<number>(sumCorrectAnswers(quiz))
+const isConfettiVisible = ref<boolean>(true)
 
 const canShare: boolean = navigator.canShare
 const files = ref<Array<File>>([])
@@ -67,6 +68,12 @@ const onShare = async () => {
 const onRestart = () => {
   router.push('/quiz?questionId=0')
 }
+
+const explode = async () => {
+  isConfettiVisible.value = false;
+  await nextTick();
+  isConfettiVisible.value = true;
+};
 </script>
 
 <template>
@@ -77,11 +84,8 @@ const onRestart = () => {
       </Container>
       <h2>Thank you for taking the quiz!</h2>
       <p>It's time to find out how well you know Maryam. But before we reveal your score,
-        we want to say a few words.
+        we want to say you are a very good friend of Maryam's, and she is lucky to have you!</p>
 
-        You are a very good friend of Maryam's, and she is lucky to have you!</p>
-
-      <p>Now, it's time to see just how well you did.</p>
       <Button
           :label="'Calculate my score'"
           :wide="true"
@@ -100,10 +104,11 @@ const onRestart = () => {
     </transition>
 
     <div v-if="isScoreCalculated">
-      <ConfettiExplosion :particleCount="500" :duration="10000" :force="0.9" />
+      <ConfettiExplosion :particleCount="500" :duration="10000" :force="0.9" v-if="isConfettiVisible"/>
       <div v-if="score >= 0 && score <= 10">
-        <Container type="result">
+        <Container type="result" @click="explode()">
           <h1>Inquisitive Explorer</h1>
+          <p class="confetti__trigger">click me for a confetti explosion</p>
         </Container>
         <div class="score-container">
           <h2 v-if="files.length > 0" class="score">{{ score }}</h2><span class="bound">/{{ totalScore }}</span>
@@ -114,21 +119,22 @@ const onRestart = () => {
       </div>
 
       <div v-if="score >= 11 && score <= 25">
-        <Container type="result">
+        <Container type="result" @click="explode()">
           <h1>Budding Confidante</h1>
+          <p class="confetti__trigger">click me for a confetti explosion</p>
         </Container>
         <div class="score-container">
           <h2 v-if="files.length > 0" class="score">{{ score }}</h2><span class="bound">/{{ totalScore }}</span>
         </div>
         <p>You know Maryam quite well. Your friendship is blossoming! You've collected a treasure trove of insights into
           her preferences and personality. You're becoming a trusted friend, and your bond with Maryam is growing
-          stronger
-          with every moment you share.</p>
+          stronger with every moment you share.</p>
       </div>
 
       <div v-if="score >= 26 && score <= 40">
-        <Container type="result">
+        <Container type="result" @click="explode()">
           <h1>Ultimate Companion</h1>
+          <p class="confetti__trigger">click me for a confetti explosion</p>
         </Container>
         <div class="score-container">
           <h2 v-if="files.length > 0" class="score">{{ score }}</h2><span class="bound">/{{ totalScore }}</span>
@@ -139,8 +145,9 @@ const onRestart = () => {
       </div>
 
       <div v-if="score >= 41 && score <= 50">
-        <Container type="result">
+        <Container type="result" @click="explode()">
           <h1>Kindred Spirit</h1>
+          <p class="confetti__trigger">click me for a confetti explosion</p>
         </Container>
         <div class="score-container">
           <h2 v-if="files.length > 0" class="score">{{ score }}</h2><span class="bound">/{{ totalScore }}</span>
@@ -150,16 +157,16 @@ const onRestart = () => {
       </div>
 
       <div v-if="score >= 51 && score <= 61">
-        <Container type="result">
+        <Container type="result" @click="explode()">
           <h1>Maryam's Bestie</h1>
+          <p class="confetti__trigger">click me for a confetti explosion</p>
         </Container>
         <div class="score-container">
           <h2 v-if="files.length > 0" class="score">{{ score }}</h2><span class="bound">/{{ totalScore }}</span>
         </div>
         <p>Congratulations! You're not just a friend; you're Maryam's bestie. Your friendship is a treasure,
-          characterized
-          by an unbreakable bond, deep understanding, and endless fun. Maryam is lucky to have you, and you're lucky to
-          have her as a cherished friend.</p>
+          characterized by an unbreakable bond, deep understanding, and endless fun. Maryam is lucky to have you, and
+          you're lucky to have her as a cherished friend.</p>
       </div>
       <p class="hashtag">#40shadesofmaryam</p>
 
@@ -262,6 +269,12 @@ const onRestart = () => {
     &::after {
       transform: scaleX(0);
     }
+  }
+}
+
+.confetti {
+  &__trigger {
+    font-size: 10px;
   }
 }
 </style>
