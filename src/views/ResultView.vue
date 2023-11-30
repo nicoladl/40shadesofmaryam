@@ -2,13 +2,11 @@
 import {quizState} from "@/state/quizState";
 import {nextTick, onMounted, onUnmounted, ref} from "vue";
 import Button from "@/components/Button.vue";
-import html2canvas from "html2canvas";
 import {quiz} from "@/assets/quiz";
 import type {Question} from "@/models/IQuestion";
 import router from "@/router";
 import Container from "@/components/Container.vue";
 import ConfettiExplosion from "vue-confetti-explosion";
-import Fixed from "@/components/Fixed.vue";
 
 // TOTAL IS 61
 
@@ -33,9 +31,6 @@ const isScoreCalculating = ref<boolean>(false)
 const totalScore = ref<number>(sumCorrectAnswers(quiz))
 const isConfettiVisible = ref<boolean>(true)
 
-const canShare: boolean = navigator.canShare
-const files = ref<Array<File>>([])
-
 const fakeScoreCalculation = () => {
   isScoreCalculating.value = true
 
@@ -44,20 +39,6 @@ const fakeScoreCalculation = () => {
     isScoreCalculating.value = false
     isScoreCalculated.value = true
   }, 5000)
-}
-
-const onShare = async () => {
-  await html2canvas(document.body, {useCORS: true})
-      .then((canvas) => {
-        canvas.toBlob((blob) => {
-          return files.value = [new File([blob], '40shadesofmaryam.png', {type: blob.type})]
-        })
-      })
-
-  const shareData = {
-    files: files.value,
-  };
-  await navigator.share(shareData)
 }
 
 const onRestart = () => {
@@ -170,18 +151,6 @@ const explode = async () => {
           @click="onRestart"
       />
     </div>
-
-    <Fixed v-if="isScoreCalculated">
-      <Button
-          :label="'Share'"
-          :wide="true"
-          @click="onShare"
-      >
-        <Container :type="'button'">
-          <button>Share!</button>
-        </Container>
-      </Button>
-    </Fixed>
   </div>
 </template>
 
