@@ -29,6 +29,7 @@ body {
     background-color: rgb(169 83 82);
     padding-bottom: 120px;
     min-height: 100vh;
+    overflow-x: hidden;
 }
 
 .quiz-page #app {
