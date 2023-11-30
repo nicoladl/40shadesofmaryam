@@ -144,7 +144,7 @@ const explode = async () => {
           characterized by an unbreakable bond, deep understanding, and endless fun. Maryam is lucky to have you, and
           you're lucky to have her as a cherished friend.</p>
       </div>
-      <p class="hashtag">#40shadesofmaryam</p>
+      <p class="hashtag">#40ShadesOfMaryam</p>
 
       <Button
           :label="'Restart quiz'"
@@ -192,7 +192,7 @@ const explode = async () => {
 
 .hashtag {
   color: white;
-  text-transform: uppercase;
+  font-size: 1.75rem;
 }
 
 .loader {
@@ -238,6 +238,7 @@ const explode = async () => {
 .confetti {
   &__trigger {
     font-size: 10px;
+    margin-top: -10px;
   }
 }
 </style>
