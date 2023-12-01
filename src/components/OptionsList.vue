@@ -31,7 +31,7 @@ const answers = ref<Array<number>>([])
 const checkedAnswers = ref<Array<number>>([]);
 
 const onCheckboxChange = () => {
-  quizState.setAnswer(questionId.value, checkedAnswers.value)
+  quizState.setAnswer(questionId.value - 1, checkedAnswers.value)
   const calculateResult = (givenAnswers: Array<number>, correctAnswers: Array<number>): number => (
       givenAnswers.reduce((count: number, value: number) => {
         if (correctAnswers.includes(value)) {
