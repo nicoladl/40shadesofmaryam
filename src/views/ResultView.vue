@@ -8,7 +8,7 @@ import router from "@/router";
 import Container from "@/components/Container.vue";
 import ConfettiExplosion from "vue-confetti-explosion";
 
-// TOTAL IS 61
+// TOTAL IS 66
 
 onMounted(() => {
   document.body.classList.add('result-page');
@@ -132,7 +132,7 @@ const explode = async () => {
           wonderful memories. You've embraced Maryam's uniqueness, and it has only deepened your connection.</p>
       </div>
 
-      <div v-if="score >= 51 && score <= 61">
+      <div v-if="score >= 51 && score <= 66">
         <Container type="result" @click="explode()">
           <h1>Maryam's Bestie</h1>
           <p class="confetti__trigger">click me for a confetti explosion</p>
